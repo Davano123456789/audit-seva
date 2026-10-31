@@ -13,14 +13,14 @@ class UserSeeder extends Seeder
      */
     private const ACCOUNTS = [
         [
-            'email' => 'admin@ptxyz.com',
-            'legacy_email' => 'admin@sevaaudit.com',
+            'email' => 'admin@gmail.com',
+            'legacy_email' => 'admin@ptxyz.com',
             'name' => 'Administrator',
             'role' => User::ROLE_ADMIN,
         ],
         [
-            'email' => 'asesor@ptxyz.com',
-            'legacy_email' => 'asesor@sevaaudit.com',
+            'email' => 'asesor@gmail.com',
+            'legacy_email' => 'asesor@ptxyz.com',
             'name' => 'Asesor',
             'role' => User::ROLE_ASESOR,
         ],
