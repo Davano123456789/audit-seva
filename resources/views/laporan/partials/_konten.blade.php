@@ -204,46 +204,7 @@
         </div>
     </section>
 
-    {{-- Keterangan skala --}}
-    <section class="avoid-break grid gap-6 md:grid-cols-2 print:grid-cols-2">
-        <div>
-            <h2 class="mb-2 font-bold">Skala Penilaian (Rating Scale)</h2>
-            <table class="w-full border-collapse text-xs">
-                <thead>
-                    <tr><th class="{{ $th }}">Kode</th><th class="{{ $th }}">Kategori</th><th class="{{ $th }}">Rentang</th></tr>
-                </thead>
-                <tbody>
-                    @php $upper = null; @endphp
-                    @foreach (config('cobit.ratings') as $code => $rating)
-                        <tr>
-                            <td class="{{ $td }} text-center">{{ $code }}</td>
-                            <td class="{{ $td }}">{{ $rating['name'] }}</td>
-                            <td class="{{ $td }} text-center">{{ $rating['min'] }}% &ndash; {{ $upper === null ? '100%' : '< ' . $upper . '%' }}</td>
-                        </tr>
-                        @php $upper = $rating['min']; @endphp
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div>
-            <h2 class="mb-2 font-bold">Indeks Maturity Level</h2>
-            <table class="w-full border-collapse text-xs">
-                <thead>
-                    <tr><th class="{{ $th }}">Maturity Index</th><th class="{{ $th }}">Maturity Level</th></tr>
-                </thead>
-                <tbody>
-                    @php $lower = 0; @endphp
-                    @foreach (config('cobit.maturity_scale') as $range)
-                        <tr @class(['bg-brand-50 font-semibold' => $report['maturity_level'] === $range['level']])>
-                            <td class="{{ $td }} text-center">{{ $fmt($lower) }} &ndash; {{ $fmt($range['max']) }}</td>
-                            <td class="{{ $td }}">{{ $range['level'] }} &ndash; {{ \App\Services\CapabilityAssessor::levelName($range['level']) }}</td>
-                        </tr>
-                        @php $lower = $range['max'] + 0.01; @endphp
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </section>
+
 
     {{-- Lampiran: rincian jawaban per aktivitas (format Tabel Capability Assessment Level n) --}}
     @if (collect($report['rows'])->contains(fn ($row) => ! empty($row['assessments'])))
