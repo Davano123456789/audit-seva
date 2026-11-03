@@ -29,8 +29,8 @@ Buka `http://127.0.0.1:8000`.
 
 | Role   | Email                  | Password   |
 |--------|------------------------|------------|
-| Admin  | admin@ptxyz.com       | `password` |
-| Asesor | asesor@ptxyz.com      | `password` |
+| Admin  | admin@gmail.com       | `password` |
+| Asesor | asesor@gmail.com      | `password` |
 
 Segera ganti password lewat menu **Profil Saya**.
 

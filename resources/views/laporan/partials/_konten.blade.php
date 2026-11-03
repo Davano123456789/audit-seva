@@ -90,66 +90,13 @@
         <section class="avoid-break">
             <h2 class="mb-2 font-bold">Perhitungan Maturity Level</h2>
             <div class="rounded-lg border border-gray-200 bg-gray-50 px-4 py-4">
-                <p class="text-center">
-                    <span class="italic">Maturity Level</span> =
-                    <span class="inline-flex flex-col items-center align-middle text-xs">
-                        <span class="border-b border-gray-700 px-1">Jumlah Level Proses TI</span>
-                        <span class="px-1">Jumlah Proses TI yang digunakan</span>
-                    </span>
-                    = <span class="inline-flex flex-col items-center align-middle">
-                        <span class="border-b border-gray-700 px-1">{{ implode(' + ', $report['levels']) }}</span>
-                        <span class="px-1">{{ $report['completed_count'] }}</span>
-                    </span>
-                    = <span class="inline-flex flex-col items-center align-middle">
-                        <span class="border-b border-gray-700 px-1">{{ $report['sum'] }}</span>
-                        <span class="px-1">{{ $report['completed_count'] }}</span>
-                    </span>
-                    = <strong>{{ $maturity }}</strong>
-                </p>
-                <p class="mt-3 text-center text-gray-600">
+                <p class="text-center text-gray-600">
                     Berdasarkan tabel indeks maturity, nilai {{ $maturity }} berada pada
                     <strong>Level {{ $report['maturity_level'] }} ({{ $report['maturity_name'] }})</strong>.
                 </p>
             </div>
         </section>
     @endif
-
-    {{-- Analisis gap --}}
-    <section class="avoid-break">
-        <h2 class="mb-1 text-center font-bold">Tabel Analisis Kesenjangan (Gap)</h2>
-        <table class="mt-3 w-full border-collapse">
-            <thead>
-                <tr>
-                    <th class="{{ $th }} w-12">No</th>
-                    <th class="{{ $th }}">Proses TI</th>
-                    <th class="{{ $th }} w-20">Target</th>
-                    <th class="{{ $th }} w-20">Capability</th>
-                    <th class="{{ $th }} w-16">Gap</th>
-                    <th class="{{ $th }}">Keterangan</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($report['rows'] as $row)
-                    <tr>
-                        <td class="{{ $td }} text-center">{{ $loop->iteration }}.</td>
-                        <td class="{{ $td }}"><span class="font-medium">{{ $row['code'] }}</span> &middot; <span class="italic">{{ $row['name'] }}</span></td>
-                        <td class="{{ $td }} text-center">{{ $row['target'] }}</td>
-                        <td class="{{ $td }} text-center">{{ $row['level'] ?? '-' }}</td>
-                        <td @class([$td, 'text-center font-semibold', 'text-red-600' => $row['gap'] > 0])>{{ $row['gap'] ?? '-' }}</td>
-                        <td class="{{ $td }}">
-                            @if (! $row['completed'])
-                                Belum selesai dinilai
-                            @elseif ($row['gap'] > 0)
-                                Belum mencapai target
-                            @else
-                                Target tercapai
-                            @endif
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </section>
 
     {{-- Rincian per proses --}}
     <section>
